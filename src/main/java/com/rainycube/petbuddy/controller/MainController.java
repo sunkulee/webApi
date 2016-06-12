@@ -10,7 +10,12 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 	@RequestMapping("/")
 	public String index(){
-		System.out.println("aa");
+		System.out.println("/");
 		return "index";
+	}
+	@RequestMapping("/test")
+	public String test(){
+		System.out.println("test");
+		return "test";
 	}
 }
