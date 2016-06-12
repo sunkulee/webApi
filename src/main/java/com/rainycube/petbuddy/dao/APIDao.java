@@ -1,4 +1,4 @@
-package com.rainycube.petAPI.dao;
+package com.rainycube.petbuddy.dao;
 
 import java.util.List;
 
@@ -7,13 +7,13 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.rainycube.petAPI.vo.VO;
+import com.rainycube.petbuddy.vo.PetVO;
 
 @Repository
-public class Dao {
+public class APIDao {
 	@Autowired
 	private JdbcTemplate template;
-	public int add(VO vo){
+	public int add(PetVO vo){
 		String q = "insert into pet(pet_name, pet_type, pet_gender, pet_imgUrl, trade_location) values(?,?,?,?,?)";
 		return template.update(q, 
 				vo.getPetName(), 
@@ -23,12 +23,12 @@ public class Dao {
 				vo.getTradeLocation()
 				);
 	}
-	public List<VO> list(){
+	public List<PetVO> list(){
 		String q = "select * from pet";
-		return template.query(q, new BeanPropertyRowMapper(VO.class));
+		return template.query(q, new BeanPropertyRowMapper(PetVO.class));
 	}
-	public VO get(Integer petId){
+	public PetVO get(Integer petId){
 		String q = "select * from pet where pet_id = ?";
-		return (VO)template.queryForObject(q, new Object[] { petId }, new BeanPropertyRowMapper(VO.class));
+		return (PetVO)template.queryForObject(q, new Object[] { petId }, new BeanPropertyRowMapper(PetVO.class));
 	}
 }

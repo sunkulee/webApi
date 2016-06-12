@@ -1,4 +1,4 @@
-package com.rainycube.petAPI.controller;
+package com.rainycube.petbuddy.controller;
 
 
 import java.util.List;
@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.rainycube.petAPI.dao.Dao;
-import com.rainycube.petAPI.vo.VO;
+
+import com.rainycube.petbuddy.dao.APIDao;
+import com.rainycube.petbuddy.vo.PetVO;
 @RestController
-public class Controller {
-	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+public class APIController {
+	private static final Logger logger = LoggerFactory.getLogger(APIController.class);
     @Autowired
-    private Dao dao;
+    private APIDao dao;
 	@RequestMapping("/list")
-	public List<VO> list(){
+	public List<PetVO> list(){
 		return dao.list();	
 	}
 	@RequestMapping("/add/{petName}")
@@ -31,7 +32,7 @@ public class Controller {
     		@RequestParam(value="petImgurl")String petImgurl,
     		@RequestParam(value="tradeLocation")String tradeLocation
     		) {
-		VO vo = new VO();
+		PetVO vo = new PetVO();
 		vo.setPetName(petName);
 		vo.setPetType(petType);
 		vo.setPetGender(petGender);
@@ -45,7 +46,7 @@ public class Controller {
 		}
     }
 	@RequestMapping("/get/{petId}")
-	public VO get(@PathVariable Integer petId){
+	public PetVO get(@PathVariable Integer petId){
 		return dao.get(petId);
 	}
 }

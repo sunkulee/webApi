@@ -1,11 +1,11 @@
-package com.rainycube.petAPI.vo;
+package com.rainycube.petbuddy.vo;
 /*create table pet(pet_id int(10) not null auto_increment primary key,
 pet_name varchar(50) not null,
 pet_type varchar(50) not null,
 pet_gender varchar(10) not null,
 pet_imgUrl varchar(250),
 trade_location varchar(200) not null);*/
-public class VO {
+public class PetVO {
 	private Integer petId;
 	private String petName;
 	private String petType;
